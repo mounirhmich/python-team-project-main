@@ -3,6 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_sqlalchemy import SQLAlchemy
 
 from app.routes.auth import auth_bp
+from app.routes.user import user_bp
 
 db = SQLAlchemy()
 jwt = JWTManager()
@@ -19,5 +20,6 @@ def create_app():
         db.create_all()
 
     app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp, url_prefix="/api/users")
 
     return app
